@@ -1,0 +1,48 @@
+<html><body>
+<script>
+  var arr = [];
+  var str1 = 'bonne journee';
+  var str2 = 'un jour';
+  var str_out = '';
+
+  init();
+  calc();
+  print();
+
+  function calc() {
+    var row, column;
+    for (row=1 ; row <= str2.length ; row++) {
+      for (column=1 ; column <= str1.length ; column++) {
+        if (str1[row-1] == str2[column-1]) {
+          arr[row][column] = arr[row-1][column-1] + 1;
+          str_out += str1[row-1];
+        } else {
+          if (arr[row-1][column] > arr[row][column-1])
+            arr[row][column] = arr[row-1][column];
+          else
+            arr[row][column] = arr[row][column-1];
+        }
+      }
+    }
+  }
+
+  function init() {
+    for (var i=0 ; i<=str1.length ; i++) {
+      arr[i] = [];
+      for (var j=0 ; j<=str2.length ; j++) {
+        arr[i][j] = 0;
+      }
+    }
+  }
+
+  function print() {
+    for (var i=0 ; i<=str1.length ; i++) {
+      for (var j=1 ; j<str2.length ; j++) {
+        document.write(arr[i][j] + ', ');
+      }
+      document.write('<br/>');
+    }
+    document.write(str_out);
+  }
+</script>
+</html></body>
