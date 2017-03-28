@@ -1,0 +1,49 @@
+<html><body>
+<script>
+  var a = [6,4,8,7,69,9,5,34,3,1,2,43,74];
+
+  print();
+  sort(0, a.length-1);
+  print();
+
+  function sort(start, end) {
+    if (start < end) {
+      var pivot = choose_privot(start, end);
+      pivot = partition(start, end, pivot);
+      print();
+      sort(start, pivot-1);
+      sort(pivot+1, end);
+    }
+  }
+
+  function partition(start, end, pivot) {
+    swap(pivot, end);
+    var j = start-1;
+    for (var i = start; j<end-1; j++) {
+      if (a[i] < a[end]) {
+        swap (i, j);
+        j++;
+      }
+    }
+    swap (end, j+1);
+    return j;
+  }
+
+  function swap(i,j) {
+    var temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
+  }
+
+  function choose_privot(start, end) {
+    return Math.floor((start+end)/2);
+  }
+
+  function print() {
+    for (var i=0 ; i<a.length ; i++) {
+      document.write(a[i] + ', ');
+    }
+    document.write('<br/>');
+  }
+</script>
+</html></body>
